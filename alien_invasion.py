@@ -36,8 +36,6 @@ class AlienInvasion:
             # Make the most recently drawn screen visible
             pygame.display.flip()
 
-    def _chaek_updates(self):
-
 
 if __name__ == "__main__":
     # Make a game instance and run the game
