@@ -1,4 +1,4 @@
-# Ship
+""" Ship class """
 import pygame
 
 
