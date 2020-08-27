@@ -45,7 +45,7 @@ class AlienInvasion:
                     # Stop the ship from moving right
                     self.ship.moving_right = False
                 elif event.key == pygame.K_LEFT:
-                    # Stop the ship from moving right
+                    # Stop the ship from moving left
                     self.ship.moving_left = False
 
     def _update_screen(self):
