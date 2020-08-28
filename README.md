@@ -13,9 +13,13 @@ In Alien Invasion, the player controls a rocket ship that appears at the bottom 
 
 #### How it has been done
 
-The main file, alien_invasion.py, contains the AlienInvasion class. This class creates a number of important attributes used throughout the game: the settings are assigned to settings, the main display surface is assigned to screen, and a ship instance is created in this file as well. The main loop of the game, a while loop, is also stored in this module. The while loop calls \_check_events(), ship.update(), and \_update_screen().
+The main file, `alien_invasion.py`, contains the `AlienInvasion` class. This class creates:
 
-The \_check_events() method detects relevant events, such as keypresses and releases, and processes each of these types of events through the methods \_check_keydown_events() and \_check_keyup_events(). For now, these methods manage the ship’s movement. The AlienInvasion class also contains \_update_screen(), which redraws the screen on each pass through the main loop.
+- the settings are assigned to settings
+- the main display surface is assigned to screen
+- a ship instance
+
+The main loop of the game, a while loop, is also stored in this module. The while loop calls \_check_events(), ship.update(), and \_update_screen(). The \_check_events() method detects relevant events, such as keypresses and releases, and processes each of these types of events through the methods \_check_keydown_events() and \_check_keyup_events(). For now, these methods manage the ship’s movement. The AlienInvasion class also contains \_update_screen(), which redraws the screen on each pass through the main loop.
 
 The settings.py file contains the Settings class. This class only has an **init**() method, which initializes attributes controlling the game’s appearance and the ship’s speed.
 
