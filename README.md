@@ -6,8 +6,10 @@ In Alien Invasion, the player controls a rocket ship that appears at the bottom 
 
 - Install Python3
 - Install pip3
-- brew install sdl sdl_image sdl_mixer sdl_ttf portmidi
-- python3 -m pip install -U pygame==2.0.0.dev6
+- `brew install sdl sdl_image sdl_mixer sdl_ttf portmidi`
+- `python3 -m pip install -U pygame==2.0.0.dev6`
+- Run `python3 alien_invasion.py` to run the game
+- Press `q` to exit
 
 #### How it has been done
 
