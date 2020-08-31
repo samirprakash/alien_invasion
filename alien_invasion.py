@@ -1,4 +1,3 @@
-""" Alien Invasion """
 import sys
 
 import pygame
