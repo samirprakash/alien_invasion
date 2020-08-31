@@ -35,7 +35,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
+            self._update_bullets()
             self._update_screen()
 
     def _check_events(self):
@@ -50,10 +50,8 @@ class AlienInvasion:
 
     def _check_keydown_event(self, event):
         if event.key == pygame.K_RIGHT:
-            # Move ship to the right
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
-            # Move ship to the left
             self.ship.moving_left = True
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
@@ -62,15 +60,21 @@ class AlienInvasion:
 
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
-            # Stop the ship from moving right
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
-            # Stop the ship from moving left
             self.ship.moving_left = False
 
     def _fire_bullet(self):
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        self.bullets.update()
+
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
