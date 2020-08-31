@@ -12,6 +12,7 @@ class Ship:
 
         """ Load the ship image and get its rect """
         self.image = pygame.image.load("images/ship.bmp")
+        self.image.convert()
         self.rect = self.image.get_rect()
 
         # Start each new ship at the bottom of the screen
