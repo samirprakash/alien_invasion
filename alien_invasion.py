@@ -4,6 +4,7 @@ import pygame
 
 from alien import Alien
 from bullet import Bullet
+from game_stats import GameStats
 from settings import Settings
 from ship import Ship
 
@@ -25,6 +26,7 @@ class AlienInvasion:
         #     (self.settings.screen_width, self.settings.screen_height))
 
         self.bg_color = self.settings.bg_color
+        self.stats = GameStats(self)
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -136,6 +138,9 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
+
     def _check_fleet_edges(self):
         for alien in self.aliens.sprites():
             if alien.check_edges():
@@ -146,6 +151,20 @@ class AlienInvasion:
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
+
+    def _ship_hit(self):
+        """ respond to the ip being hit by an alien """
+
+        # decrement ship by 1
+        self.stats.ships_left -= 1
+
+        # remove any existing aliens or bullets
+        self.aliens.empty()
+        self.bullets.empty()
+
+        # create a new fleet
+        self._create_fleet()
+        self.ship.center_ship()
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""

@@ -15,9 +15,8 @@ class Ship:
         self.image.convert()
         self.rect = self.image.get_rect()
 
-        # Start each new ship at the bottom of the screen
-        self.rect.midbottom = self.screen_rect.midbottom
-        self.float_x = float(self.rect.x)
+        # Start each new ship at the center bottom of the screen
+        self.center_ship()
 
         # Movement flag
         self.moving_right = False
@@ -36,3 +35,8 @@ class Ship:
     def blitme(self):
         """ Draw the image at its current location """
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        # Start each new ship at the center bottom of the screen
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.float_x = float(self.rect.x)
