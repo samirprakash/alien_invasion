@@ -3,8 +3,8 @@ class GameStats:
         """ initialize statistics """
         self.settings = ai_game.settings
         self.game_active = False
-        self._reset_status()
+        self.reset_status()
 
-    def _reset_status(self):
+    def reset_status(self):
         """ initialize statics that can change during the game """
         self.ships_left = self.settings.ship_limit
