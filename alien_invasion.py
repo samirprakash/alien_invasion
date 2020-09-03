@@ -4,6 +4,7 @@ import pygame
 
 from alien import Alien
 from bullet import Bullet
+from button import Button
 from game_stats import GameStats
 from settings import Settings
 from ship import Ship
@@ -31,6 +32,7 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
+        self.play_button = Button(self, "Play")
 
         pygame.display.set_caption("Alien Invasion")
 
@@ -53,6 +55,13 @@ class AlienInvasion:
                 self._check_keydown_event(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+    def _check_play_button(self, mouse_pos):
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
     def _check_keydown_event(self, event):
         """ Evaluate key press events """
@@ -114,7 +123,7 @@ class AlienInvasion:
         # calculate the space available for displaying the full fleet
         # screen height - one alien height from top - ship height from bottom - 2 more alien heights to create space between ship and fleet
         available_space_y = (
-            self.settings.screen_height - (5 * alien_height) - ship_height
+            self.settings.screen_height - (10 * alien_height) - ship_height
         )
         # calculate the number of allowed rows in a fleet
         # there is a gap of one alien height between two rows in fleet
@@ -197,6 +206,10 @@ class AlienInvasion:
 
         # draw aliens
         self.aliens.draw(self.screen)
+
+        # Draw the play button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         # Make the most recently drawn screen visible
         pygame.display.flip()
