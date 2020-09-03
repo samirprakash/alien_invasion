@@ -32,6 +32,7 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
+        self.settings.increase_speed()
         self.play_button = Button(self, "Play")
 
         pygame.display.set_caption("Alien Invasion")
@@ -80,8 +81,10 @@ class AlienInvasion:
             self.ship.moving_left = False
 
     def _check_play_button(self, mouse_pos):
-        if self.play_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
             self._start_game()
+            self.settings.initalize_dynamic_settings()
 
     def _start_game(self):
         self.stats.reset_status()
