@@ -24,6 +24,9 @@ class Settings:
         self.fleet_drop_speed = 10
         self.fleet_direction = 1
 
+        # scoring
+        self.alien_points = 50
+
         self.speedup_scale = 1.1
 
         self.initalize_dynamic_settings()
