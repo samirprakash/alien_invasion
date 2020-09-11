@@ -132,6 +132,10 @@ class AlienInvasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
+
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _create_fleet(self):
         """ Create fleet of aliens """
