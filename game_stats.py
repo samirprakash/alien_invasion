@@ -4,6 +4,7 @@ class GameStats:
         self.settings = ai_game.settings
         self.game_active = False
         self.reset_status()
+        self.high_score = 0
 
     def reset_status(self):
         """ initialize statics that can change during the game """
